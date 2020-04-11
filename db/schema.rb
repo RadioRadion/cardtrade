@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_142328) do
+ActiveRecord::Schema.define(version: 2020_04_11_144711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2020_04_11_142328) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "trade_id"
+    t.index ["trade_id"], name: "index_cards_on_trade_id"
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_142328) do
     t.index ["user_id"], name: "index_wants_on_user_id"
   end
 
+  add_foreign_key "cards", "trades"
   add_foreign_key "cards", "users"
   add_foreign_key "trades", "users"
   add_foreign_key "wants", "users"
