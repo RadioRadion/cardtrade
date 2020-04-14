@@ -57,7 +57,8 @@ function findMatches(wordToMatch, uniqs) {
 }
 
 function complete(name) {
-  searchInput.innerText = "name";
+  document.querySelector('.search').value = name;
+  suggestions.innerHTML = "";
 }
 
 function displayMatches() {
