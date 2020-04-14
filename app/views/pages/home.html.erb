@@ -1,36 +1,19 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<label for="name">Name (4 to 8 characters):</label>
-
-<input type="text" id="name" name="name" required
-       minlength="4" maxlength="8" size="10">
 
 <!-- code pour chopper toutes les cartes au démarrage -->
 <% require 'csv'
 cards = []
+names = []
 filepath = 'lib/datas/cards.csv'
 CSV.foreach(filepath) do |row|
-  # Here, row is an array of columns
-  cards << row[46]
+  # Here, row is an array of columns. 46 => name, 59 => setCode
+  cards << [row[46], row[59]]
+  names << row[46]
 end
-  uniqs = cards.uniq.sort
+uniqsName = names.uniq.sort
   %>
-
-      <div class="container">
-      <div class="row">
-        <div class="col-g-12">AA</div>
-      </div>
-      <div class="row">
-        <div class="col-g-x1">AA</div>
-        <div class="col-g-x2">AA</div>
-        <div class="col-g-x3">AA</div>
-      </div>
-      <div class="row">
-        ...
-      </div>
-     </div>
-
 
 
   <form class="search-form">
@@ -41,16 +24,20 @@ end
     </ul>
   </form>
 
+<div class="nextForm"></div>
 <script>
   //Importation de la variable de ruby. raw permet d'éviter le soucis d'importation qui rajoute &quote à chaque entrée de l'array
- const uniqs = <%= raw uniqs %>;
+ const uniqsName = <%= raw uniqsName %>;
+ const cards =  <%= raw cards %>;
+
+ let extensions = [];
 // const cities = [];
 // fetch(endpoint)
 //   .then(blob => blob.json())
 //   .then(data => cities.push(...data));
 
-function findMatches(wordToMatch, uniqs) {
-  return uniqs.filter(card => {
+function findMatches(wordToMatch, uniqsName) {
+  return uniqsName.filter(card => {
     const regex = new RegExp(wordToMatch, 'gi');
     return card.match(regex);
   });
@@ -59,11 +46,28 @@ function findMatches(wordToMatch, uniqs) {
 function complete(name) {
   document.querySelector('.search').value = name;
   suggestions.innerHTML = "";
+  let carte = name;
+  cards.map ( (card) => {
+  if (card[0] === carte)
+    extensions.push(card[1]);
+  });
+  wholeForm();
+}
+
+const wholeForm = () => {
+  const form =[`<option value=''>--Please choose an extension--</option>`];
+  extensions.map( (extension) => {
+    form.push(`<option value='${extension}'>${extension}</option>`);
+  });
+  nextForm.innerHTML = (`<label for="pet-select">Extension:</label>
+    <select name="sets" id="set-select">
+      ${form}
+    </select>`);
 }
 
 function displayMatches() {
   if (this.value.length > 1) {
-    const matchArray = findMatches(this.value, uniqs);
+    const matchArray = findMatches(this.value, uniqsName);
     const html = matchArray.map(card => {
       // const regex = new RegExp(this.value, 'gi');
       // const Name = card.replace(regex, `<span class="hl" >${this.value}</span>`);
@@ -79,6 +83,7 @@ function displayMatches() {
 
 const searchInput = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions');
+const nextForm = document.querySelector('.nextForm');
 
 
 searchInput.addEventListener('change', displayMatches);
