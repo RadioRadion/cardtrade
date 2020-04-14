@@ -1,4 +1,6 @@
 class Want < ApplicationRecord
   belongs_to :user
-  belongs_to :card
+
+  validates :name, presence: true
+
 end

@@ -1,8 +1,22 @@
 <div class="container">
 
-  <% @wants.each do |want| %>
-    <div>
-      <%= card.name %>
-    </div>
-  <% end %>
+<h1>My wishlist</h1>
+  <div>
+    <ul>
+    <% @wants.each do |want| %>
+
+      <li> name: <%= want.name %> </li>
+
+      </div>
+    <% end %>
+    </ul>
+  </div>
+
+  <div>
+      <%= link_to "Add card", new_want_path, class: 'btn btn-secondary' %>
+  </div>
 </div>
+
+
+
+
