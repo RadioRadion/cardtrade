@@ -19,3 +19,4 @@ const search = (query) => {
     console.log(data);
   });
 }
+
