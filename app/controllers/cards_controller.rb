@@ -18,9 +18,10 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
 
     if @card.update(card_params)
-      redirect_to @card
-    else
       redirect_to  edit_card_path
+    else
+      render :new
+
     end
   end
 

@@ -1,0 +1,7 @@
+<div class="container">
+    <%= simple_form_for(@want, url: want_path, method: :patch) do |f| %>
+    <%= f.input :name %>
+    <%= f.submit "Save card", class: "btn btn-success" %>
+    <% end %>
+   </div>
+
