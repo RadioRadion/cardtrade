@@ -5,20 +5,29 @@ class CardsController < ApplicationController
   end
 
   def new
+     @card = Card.new
   end
+
+  def create
+    @card = Card.new(cards_params)
+    @card.user = current_user
+    if @card.save!
+      redirect_to cards_path
+    else
+      render :new
+    end
+  end
+
 
   def edit
-    @card = Card.new
+    @card = Card.find(params[:id])
   end
-
-
-
 
   def update
     @card = Card.find(params[:id])
 
-    if @card.update(card_params)
-      redirect_to  edit_card_path
+    if @card.update(cards_params)
+      redirect_to cards_path
     else
       render :new
 
@@ -26,6 +35,9 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    @card = Card.find(params[:id])
+    @card.destroy
+    redirect_to cards_path
   end
 
   private
@@ -34,3 +46,6 @@ class CardsController < ApplicationController
     params.require(:card).permit(:condition)
   end
 end
+
+
+
