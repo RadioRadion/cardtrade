@@ -1,0 +1,5 @@
+   <div class="container">
+    <%= simple_form_for(@card) do |f| %>
+    <%= f.input :condition, collection: ["neuf", "occasion"]  %>
+    <%= f.submit "Save card", class: "btn btn-success" %>
+    <% end %>

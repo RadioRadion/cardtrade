@@ -8,20 +8,15 @@
       <li> name: <%= want.name %> </li>
           <%= link_to "Del", want_path(want), method: :delete, class: "btn btn-warning"%>
           <%= link_to "edit", edit_want_path(want), class: "btn btn-warning"%>
-
-      </div>
     <% end %>
     </ul>
   </div>
-
   <div>
       <%= link_to "Add card", new_want_path, class: 'btn btn-secondary' %>
   </div>
-  <div>
-
-  </div>
-
 </div>
+
+
 
 
 
