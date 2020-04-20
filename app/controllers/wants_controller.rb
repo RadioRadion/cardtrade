@@ -5,7 +5,17 @@ class WantsController < ApplicationController
   end
 
   def new
-     @want = Want.new
+    @want = Want.new
+
+    @cards = []
+    @names = []
+    filepath = 'lib/datas/cards.csv'
+    CSV.foreach(filepath) do |row|
+    # Here, row is an array of columns. 46 => name, 59 => setCode
+      @cards << [row[46], row[59]]
+      @names << row[46]
+    end
+    @uniqsName = @names.uniq.sort
   end
 
   def create
@@ -43,7 +53,7 @@ class WantsController < ApplicationController
   private
 
   def wants_params
-    params.require(:want).permit(:name)
+    params.require(:want).permit(:name, :quantity, :extension, :foil, :min_condition)
   end
 end
 
