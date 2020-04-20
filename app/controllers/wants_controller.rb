@@ -5,6 +5,7 @@ class WantsController < ApplicationController
   end
 
   def new
+    require 'csv'
     @want = Want.new
 
     @cards = []
@@ -53,7 +54,7 @@ class WantsController < ApplicationController
   private
 
   def wants_params
-    params.require(:want).permit(:name, :quantity, :extension, :foil, :min_condition)
+    params.require(:want).permit(:name, :quantity, :extension, :foil, :min_condition, :language)
   end
 end
 
