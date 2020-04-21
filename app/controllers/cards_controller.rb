@@ -1,11 +1,22 @@
 class CardsController < ApplicationController
+  require 'csv'
 
   def index
     @cards = Card.all
   end
 
   def new
-     @card = Card.new
+    @card = Card.new
+
+    @cards = []
+    @names = []
+    filepath = 'lib/datas/cards.csv'
+    CSV.foreach(filepath) do |row|
+    # Here, row is an array of columns. 46 => name, 59 => setCode, 68 uuid
+      @cards << [row[46], row[59]]
+      @names << row[46]
+    end
+    @uniqsName = @names.uniq.sort
   end
 
   def create
@@ -43,7 +54,7 @@ class CardsController < ApplicationController
   private
 
   def cards_params
-    params.require(:card).permit(:condition)
+    params.require(:card).permit(:name, :quantity, :extension, :foil, :condition, :language)
   end
 end
 
