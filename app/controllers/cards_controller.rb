@@ -1,19 +1,19 @@
 class CardsController < ApplicationController
+  require 'csv'
 
   def index
     @cards = Card.all
   end
 
   def new
-  require 'csv'
     @card = Card.new
 
     @cards = []
     @names = []
     filepath = 'lib/datas/cards.csv'
     CSV.foreach(filepath) do |row|
-    # Here, row is an array of columns. 46 => name, 59 => setCode
-      @cards << [row[46], row[59], row[68]]
+    # Here, row is an array of columns. 46 => name, 59 => setCode, 68 uuid
+      @cards << [row[46], row[59]]
       @names << row[46]
     end
     @uniqsName = @names.uniq.sort
