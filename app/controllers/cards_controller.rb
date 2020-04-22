@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  require 'csv'
 
   def index
     @cards = Card.all
@@ -12,7 +13,8 @@ class CardsController < ApplicationController
     @names = []
     filepath = 'lib/datas/cards.csv'
     CSV.foreach(filepath) do |row|
-    # Here, row is an array of columns. 46 => name, 59 => setCode
+
+    # Here, row is an array of columns. 46 => name, 59 => setCode, 68 uuid
       @cards << [row[46], row[59]]
       @names << row[46]
     end
