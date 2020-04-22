@@ -1,6 +1,7 @@
-  <div class="container">
 
-    <%= simple_form_for(@card) do |f| %>
+    <div class="container">
+
+    <%= simple_form_for [current_user, @card] do |f| %>
       <%= f.input :name, input_html: { class: 'search' } %>
       <div class="nextForm"></div>
     <% end %>

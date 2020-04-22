@@ -23,7 +23,7 @@ class WantsController < ApplicationController
     @want = Want.new(wants_params)
     @want.user = current_user
     if @want.save!
-      redirect_to wants_path
+      redirect_to user_path(current_user)
     else
       render :new
     end
@@ -39,7 +39,7 @@ class WantsController < ApplicationController
     @want = Want.find(params[:id])
 
     if @want.update!(wants_params)
-      redirect_to wants_path
+      redirect_to user_path(current_user)
     else
       render :new
     end
@@ -48,7 +48,7 @@ class WantsController < ApplicationController
   def destroy
     @want = Want.find(params[:id])
     @want.destroy
-    redirect_to wants_path
+    redirect_to user_path(current_user)
   end
 
   private

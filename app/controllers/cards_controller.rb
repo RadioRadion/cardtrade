@@ -6,12 +6,14 @@ class CardsController < ApplicationController
   end
 
   def new
+    require 'csv'
     @card = Card.new
 
     @cards = []
     @names = []
     filepath = 'lib/datas/cards.csv'
     CSV.foreach(filepath) do |row|
+
     # Here, row is an array of columns. 46 => name, 59 => setCode, 68 uuid
       @cards << [row[46], row[59]]
       @names << row[46]
@@ -23,7 +25,7 @@ class CardsController < ApplicationController
     @card = Card.new(cards_params)
     @card.user = current_user
     if @card.save!
-      redirect_to cards_path
+      redirect_to user_path(current_user)
     else
       render :new
     end
@@ -38,7 +40,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
 
     if @card.update(cards_params)
-      redirect_to cards_path
+      redirect_to user_path(current_user)
     else
       render :new
 
@@ -48,7 +50,7 @@ class CardsController < ApplicationController
   def destroy
     @card = Card.find(params[:id])
     @card.destroy
-    redirect_to cards_path
+    redirect_to user_path(current_user)
   end
 
   private

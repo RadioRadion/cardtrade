@@ -1,6 +1,6 @@
    <div class="container">
 
-    <%= simple_form_for(@want) do |f| %>
+    <%= simple_form_for [current_user, @want] do |f| %>
       <%= f.input :name, input_html: { class: 'search' } %>
       <div class="nextForm"></div>
     <% end %>
