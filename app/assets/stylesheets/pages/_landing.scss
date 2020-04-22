@@ -1,6 +1,17 @@
+.container-landing {
+  margin: 15px;
+  display:flex;
+  justify-content: center;
+}
+
+.landing-block-right{
+  float:left
+}
+
 .landing-title {
-  color:red;
+  color:$red-wine;
   font-size: 50px;
+  font-family: $title-font;
 }
 
 
@@ -9,8 +20,53 @@
   font-size: 20px;
 }
 
+.fa-long-arrow-alt-right {
+  margin-right: 35px;
+
+}
+
 .landing-description {
   color: orange;
   display: flex;
-   flex-direction: row;
+  display:inline-grid;
+
+}
+
+.form-landing {
+  margin: 60px;
+  float:left;
+  border: solid;
+  padding: 30px;
+  border-color: white;
+  box-shadow:  0 10px 30px rgba(0,0,0,.1);
+
+}
+
+
+.form-actions {
+  background-color: $red-wine;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+
+  & :hover {
+    background-color: white;
+    color: $red-wine;
+    border-radius: 5px;
+    border-color: $red-wine;
+
+  }
+}
+
+.fa-plus {
+  color: $red-wine;
+}
+
+
+.portfolio .portfolio-item .portfolio-item-caption:hover {
+  background-color: red;
+  transition: all 0.2s ease-in-out;
 }
