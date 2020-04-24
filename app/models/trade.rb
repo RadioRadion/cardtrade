@@ -1,4 +1,3 @@
 class Trade < ApplicationRecord
-  belongs_to :user
-  belongs_to :card
+  has_many :user_trade
 end
