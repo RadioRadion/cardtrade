@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :card
   has_many :trade
   has_many :want
+  has_many :messages, dependent :destroy
 
   validates :username, presence: true
   validates :email, presence: true, format: { with: /\A.*@.*\.*\z/ }, uniqueness: true
