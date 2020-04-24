@@ -1,6 +1,6 @@
    <div class="container">
 
-    <%= simple_form_for(@want) do |f| %>
+    <%= simple_form_for [current_user, @want] do |f| %>
       <%= f.input :name, input_html: { class: 'search' } %>
       <div class="nextForm"></div>
     <% end %>
@@ -84,7 +84,7 @@ const wholeForm = () => {
         <option value='Excellent'>Excellent</option>
         <option value='Good'>Good</option>
         <option value='Light Played'>Light Played</option>
-        <option value='played'>played</option>
+        <option value='Played'>Played</option>
         <option value='Poor'>Poor</option>
       </select>
     </div>
