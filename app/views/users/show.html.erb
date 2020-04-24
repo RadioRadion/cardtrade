@@ -1,5 +1,6 @@
 <div class="container">
-<% if current_user = @user %>
+
+<% if current_user == @user %>
   <div class="row justify-content-between">
     <div class="col-4">
       <h2>COLLECTION</h2>
@@ -20,9 +21,24 @@
       <%= link_to "Add card", new_user_want_path(current_user), class: 'btn btn-secondary' %>
     </div>
   </div>
+
   <% else %>
-    test
+    <div class="row justify-content-between">
+    <div class="col-4">
+      <h2>MY COLLECTION</h2>
+      <% @cards.each do |card| %>
+      <%= card.name %>
+      <% end  %>
+    </div>
+    <div class="col-4">
+      <h2>ITS COLLECTION</h2>
+      <% @othercards.each do |card| %>
+      <%= card.name %>
+      <% end %>
+    </div>
+  </div>
   <% end %>
+
 </div>
 
 

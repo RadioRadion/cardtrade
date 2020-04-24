@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_130752) do
+ActiveRecord::Schema.define(version: 2020_04_24_121742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,11 +35,15 @@ ActiveRecord::Schema.define(version: 2020_04_23_130752) do
   create_table "chat_rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "messages", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "content"
+    t.bigint "chat_rooms_id"
+    t.index ["chat_rooms_id"], name: "index_messages_on_chat_rooms_id"
   end
 
   create_table "trades", force: :cascade do |t|
@@ -60,7 +64,9 @@ ActiveRecord::Schema.define(version: 2020_04_23_130752) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
+    t.bigint "messages_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["messages_id"], name: "index_users_on_messages_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -80,7 +86,9 @@ ActiveRecord::Schema.define(version: 2020_04_23_130752) do
 
   add_foreign_key "cards", "trades"
   add_foreign_key "cards", "users"
+  add_foreign_key "messages", "chat_rooms", column: "chat_rooms_id"
   add_foreign_key "trades", "cards"
   add_foreign_key "trades", "users"
+  add_foreign_key "users", "messages", column: "messages_id"
   add_foreign_key "wants", "users"
 end

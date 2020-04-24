@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :card
-  has_many :trade
+  has_many :user_trade
   has_many :want
   has_many :messages, dependent: :destroy
 
