@@ -10,3 +10,5 @@ u = User.new(email: "tony@botmail.com", password: "azerty", username:"tonygland"
 
 User.new(email: "vito@botmail.com", password: "azerty", username:"vitogland").save!
 User.new(email: "bernardo@botmail.com", password: "azerty", username:"bernardoland").save!
+
+ChatRoom.new(name: "Famillegland").save!
