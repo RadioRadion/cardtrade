@@ -6,4 +6,8 @@ class Message < ApplicationRecord
   def from?(some_user)
     user == some_user
   end
+
+  def broadcast_message
+
+  end
 end
