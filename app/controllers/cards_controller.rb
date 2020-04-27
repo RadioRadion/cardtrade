@@ -50,7 +50,7 @@ class CardsController < ApplicationController
   def destroy
     @card = Card.find(params[:id])
     @card.destroy
-    redirect_to user_path(current_user)
+    redirect_to user_cards_path(current_user)
   end
 
   private

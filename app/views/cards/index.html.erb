@@ -1,15 +1,18 @@
-<h1>Card List</h1>
+<div class="container">
 
-<div>
-    <ul>
-      <% @cards.each do |card| %>
-      <li> condition: <%=  card.condition %> </li>
-          <%= link_to "Del", card_path(card), method: :delete, class: "btn btn-warning"%>
-          <%= link_to "edit", edit_card_path(card), class: "btn btn-warning"%>
-    <% end %>
-    </ul>
-     <div>
-      <%= link_to "Add card", new_card_path, class: 'btn btn-secondary' %>
-    </div>
+  <h1>My Collection</h1>
+
+  <div>
+      <ul>
+        <% @cards.each do |card| %>
+        <li> name: <%=  card.name %> </li>
+            <%= link_to "Del", user_card_path(current_user, card), method: :delete, class: "btn btn-warning"%>
+            <%= link_to "edit", edit_user_card_path(current_user, card), class: "btn btn-warning"%>
+      <% end %>
+      </ul>
+       <div>
+        <%= link_to "Add card", new_user_card_path, class: 'btn btn-secondary' %>
+      </div>
+  </div>
 </div>
 
