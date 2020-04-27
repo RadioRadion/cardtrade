@@ -1,0 +1,27 @@
+.messages {
+  font-size: 14px;
+  padding: 20px;
+  border: 1px solid;
+  border-top: none;
+  border-bottom-width: 0;
+  overflow: scroll;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 10px;
+  &.right {
+    flex-direction: row-reverse;
+    .message-content {
+      background-color: green;
+    }
+  }
+}
+
+.message-content {
+  background-color: orange;
+  border-radius: 3px;
+  margin: 0 10px;
+  padding: 11px A0px 8px 10px;
+}
+

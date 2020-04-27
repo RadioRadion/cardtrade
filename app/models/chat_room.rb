@@ -1,4 +1,4 @@
 class ChatRoom < ApplicationRecord
-  def show
-  end
+  has_many :users
+  has_many :messages
 end
