@@ -1,42 +1,41 @@
 <div class="container">
 
 <% if current_user == @user %>
-  <div class="row justify-content-between">
-    <div class="col-4">
-      <h2>COLLECTION</h2>
-      <% @cards.each do |card| %>
-      <%= card.name %>
-      <%= link_to "Del", user_card_path(card), method: :delete, class: "btn btn-warning"%>
-      <%= link_to "edit", edit_user_card_path(card), class: "btn btn-warning"%>
-      <% end  %>
-      <%= link_to "Add card", new_user_card_path(current_user), class: 'btn btn-secondary' %>
-    </div>
-    <div class="col-4">
-      <h2>WANTLIST</h2>
-      <% @wants.each do |want| %>
-      <%= want.name %>
-      <%= link_to "Del", user_want_path(want), method: :delete, class: "btn btn-warning"%>
-      <%= link_to "edit", edit_user_want_path(want), class: "btn btn-warning"%>
-      <% end %>
-      <%= link_to "Add card", new_user_want_path(current_user), class: 'btn btn-secondary' %>
-    </div>
-  </div>
+  <span>Total collection : <%= @cards.length %></span><br>
+  <span>Total WantList : <%= @wants.length %></span><br>
+  <span>Nombre de trades en cours</span><br>
+  <span>Nombre de trades réalisés en cours</span><br>
 
-  <% else %>
+<% else %>
     <div class="row justify-content-between">
-    <div class="col-4">
-      <h2>MY COLLECTION</h2>
-      <% @cards.each do |card| %>
-      <%= card.name %>
-      <% end  %>
+      <div class="col-5">
+        <h2>MY COLLECTION</h2>
+        <% @cards.each do |card| %>
+        <div class="card-product">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+            <h2><%= card.name %></h2>
+          </div>
+        </div>
+        <% end  %>
+      </div>
+
+      <div class="col-2">
+        <div class="btn btn-warning">Propose to trade</div>
+      </div>
+
+      <div class="col-5">
+        <h2>ITS COLLECTION</h2>
+        <% @othercards.each do |card| %>
+        <div class="card-product selected">
+          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+          <div class="card-product-infos">
+            <h2><%= card.name %></h2>
+          </div>
+        </div>
+        <% end %>
+      </div>
     </div>
-    <div class="col-4">
-      <h2>ITS COLLECTION</h2>
-      <% @othercards.each do |card| %>
-      <%= card.name %>
-      <% end %>
-    </div>
-  </div>
   <% end %>
 
 </div>
