@@ -20,15 +20,15 @@
  -->
 
  <h1>#<%= @chat_room.name %></h1>
-<div id="messages" data-chatroom-id="<%= @chat_room.id %>">
-  <% @chat_room.messages.each do |message| %>
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <% @chatroom.messages.each do |message| %>
     <div class="message-container" id="message-<%= message.id %>">
       <i class="author">
         <span><%= message.user.nickname %></span>
         <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
       </i>
         <div id="create-message">
-        <% simple_form_for [ @chat_room, @message ], remote: true do |f| %>
+        <% simple_form_for [ @chatroom, @message ], remote: true do |f| %>
             <%= f.input :content, label: false, placeholder: "Send your message" %>
           <% end %>
       </div>
