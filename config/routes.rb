@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :cards, only: [:index, :destroy, :new, :edit, :create, :update]
     resources :wants, only: [:index, :destroy, :new, :edit, :create, :update]
   end
-  resources :chat_rooms, only: [:show] do
+  resources :chatrooms, only: [:show] do
     resources :messages, only: [:create]
   end
 end
