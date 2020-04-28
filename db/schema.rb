@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 2020_04_27_141654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "card_trades", force: :cascade do |t|
+    t.bigint "user_trade_id", null: false
+    t.bigint "card_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_card_trades_on_card_id"
+    t.index ["user_trade_id"], name: "index_card_trades_on_user_trade_id"
+  end
+
   create_table "cards", force: :cascade do |t|
     t.string "uuid"
     t.string "condition"
@@ -24,11 +33,9 @@ ActiveRecord::Schema.define(version: 2020_04_27_141654) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "trade_id"
     t.integer "quantity"
     t.string "extension"
     t.string "name"
-    t.index ["trade_id"], name: "index_cards_on_trade_id"
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
@@ -90,7 +97,8 @@ ActiveRecord::Schema.define(version: 2020_04_27_141654) do
     t.index ["user_id"], name: "index_wants_on_user_id"
   end
 
-  add_foreign_key "cards", "trades"
+  add_foreign_key "card_trades", "cards"
+  add_foreign_key "card_trades", "user_trades"
   add_foreign_key "cards", "users"
   add_foreign_key "messages", "chatrooms", column: "chat_rooms_id"
   add_foreign_key "user_trades", "trades"
