@@ -1,7 +1,7 @@
 class WantsController < ApplicationController
 
   def index
-    @wants = Want.all
+    @wants = current_user.want
   end
 
   def new

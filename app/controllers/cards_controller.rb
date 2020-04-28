@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   require 'csv'
 
   def index
-    @cards = Card.all
+    @cards = current_user.card
   end
 
   def new
