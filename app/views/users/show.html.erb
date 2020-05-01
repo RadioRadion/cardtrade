@@ -11,7 +11,7 @@
       <div class="col-5">
         <h2>MY COLLECTION</h2>
         <% @cards.each do |card| %>
-        <div class="card-product">
+        <div class="card-product" data-id=<%= card.id%> >
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
           <div class="card-product-infos">
             <h2><%= card.name %></h2>
@@ -20,14 +20,14 @@
         <% end  %>
       </div>
 
-      <div class="col-2">
-        <div class="btn btn-warning">Propose to trade</div>
+      <div class="col-2 chop">
+              <%= link_to "Propose to trade", trades_path(pipi: "pipi"), method: "POST", class: 'btn btn-warning' %>
       </div>
 
       <div class="col-5">
         <h2>ITS COLLECTION</h2>
         <% @othercards.each do |card| %>
-        <div class="card-product selected">
+        <div class="card-product" data-id=<%= card.id%> >
           <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
           <div class="card-product-infos">
             <h2><%= card.name %></h2>
@@ -40,6 +40,8 @@
 
 </div>
 
-
+<script>
+  const test = "test";
+</script>
 
 
