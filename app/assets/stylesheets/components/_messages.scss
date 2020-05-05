@@ -1,10 +1,21 @@
+.chat-header {
+  background-color: purple;
+  color: white;
+  padding: 20px;
+
+}
+
+
 .messages {
   font-size: 14px;
+  color: black;
+  background-color: white;
   padding: 20px;
-  border: 1px solid;
+  border: 1px solid black;
   border-top: none;
-  border-bottom-width: 0;
+
   overflow: scroll;
+  max-height: calc(100vh - 70px - 45px -61px - 30px);
 }
 
 .message {
@@ -13,7 +24,7 @@
   &.right {
     flex-direction: row-reverse;
     .message-content {
-      background-color: green;
+      background-color: black;
     }
   }
 }
@@ -22,6 +33,11 @@
   background-color: orange;
   border-radius: 3px;
   margin: 0 10px;
-  padding: 11px A0px 8px 10px;
+  padding: 11px 10px 8px 10px;
 }
 
+#create-message {
+  background-color: white;
+  color: black;
+  padding: 20px;
+}
