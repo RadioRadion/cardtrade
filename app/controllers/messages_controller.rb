@@ -1,14 +1,19 @@
 class MessagesController < ApplicationController
   def create
-    @chatroom = Chatroom.find(params[:chatroom_id])
     @message = Message.new(message_params)
+    @chatroom = Chatroom.find(params[:chatroom_id])
     @message.chatroom = @chatroom
     @message.user = current_user
     if @message.save
-      # respond_to do |format|
-      redirect_to chatroom_path(@chatroom, anchor: "message-#{message.id}")
+      respond_to do |format|
+        format.html {redirect_to chatroom_path(@chatroom, anchor: "message-#{message.id}")}
+        format.js
+      end
     else
-      render "chatrooms/show"
+      respond_to do |format|
+        format.html {render "chatrooms/show"}
+        format.js
+      end
     end
   end
 
@@ -16,4 +21,5 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
 end

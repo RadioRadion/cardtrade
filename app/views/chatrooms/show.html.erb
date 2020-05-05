@@ -20,3 +20,11 @@
 
 
 
+<% content_for :after_js do %>
+  <script>
+    App['chatroom_<%= @chatroom.id %>'] = App.cable.subscriptions.create(
+      { channel: 'ChatRoomsChannel', chatroom_id: <%= @chatroom.id %> },
+      {
+        received: (data) => console.log(data)
+  </script>
+<% end %>

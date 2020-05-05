@@ -1,3 +1,6 @@
-<div class="message">
-    <%= message.user.username %>
-  <div class="message-content"><%= message.content %></div>
+<div class="message <%= "right" if user_session_path %>">
+  <%= message.user.username %>
+  <div class="message-content">
+    <%= message.content %>
+  </div>
+</div>
