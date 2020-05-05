@@ -1,39 +1,22 @@
-<!-- <div class="container">
+<div class="container">
   <div class="row">
-    <div class="col-sn-6 col-sn-offset-3">
+    <div class="col-sm-6 col-sm-offset-3">
       <div class="chat-header">
-        <h4> <%#=  @chatroom.name %></h4>
+        <h4> <%= @chatroom.name %></h4>
       </div>
-      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-        <%# chat_room.messages.each do |message| %>
-          <%#= render "messages/message", message: message %>
-          <%# end %>
+      <div class="messages">
+        <% @chatroom.messages.each do |message| %>
+          <%= render "messages/message", message: message %>
+          <% end %>
       </div>
       <div id="create-message">
-        <%# simple_form_for [ @chatroom, Message.new ], remote: true do |f| %>
-          <%#= f.input :content, label: false %>
-          <%# end %>
+        <%= simple_form_for [ @chatroom, Message.new ], remote: true do |f| %>
+          <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
- -->
-
- <h1>#<%= @chatroom.name %></h1>
-<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-  <% @chatroom.messages.each do |message| %>
-    <div class="message-container" id="message-<%= message.id %>">
-      <i class="author">
-        <span><%= message.user.nickname %></span>
-        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-      </i>
-        <div id="create-message">
-        <% simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-            <%= f.input :content, label: false, placeholder: "Send your message" %>
-          <% end %>
-      </div>
 
 
-    </div>
-  <% end %>
-</div>
+
