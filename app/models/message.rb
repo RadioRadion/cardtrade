@@ -8,7 +8,7 @@ class Message < ApplicationRecord
   ActionCable.server.broadcast("chatroom_#{chatroom.id}", {
     message_partial: ApplicationController.renderer.render(
       partial: "messages/message",
-      locals: { message: self, user_session_path: false }
+      locals: { message: self, user_session_author: false }
     ),
     current_user_id: user.id
   })
