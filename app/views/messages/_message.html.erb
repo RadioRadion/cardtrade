@@ -1,3 +1,6 @@
-<div class="message">
-    <%= message.user.username %>
-  <div class="message-content"><%= message.content %></div>
+<div class="message <%= user_session_author ? "right" : "" %>">
+  <h3><%= message.user.username %> </h3>
+  <div class="message-content">
+    <%= message.content %>
+  </div>
+</div>
